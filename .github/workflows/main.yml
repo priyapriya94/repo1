@@ -1,0 +1,25 @@
+name: Mixed inputs
+
+on:
+  workflow_dispatch:
+    inputs:
+       version:
+         description:'version'
+       required: true
+      imageName:
+            description:'params.aws_linux_app_batch_api_target_image_id'
+         required: true
+        taskRepoName:
+           description:'taskRepoName'
+        required: true
+        taskPackageNme:
+           description:'taskPackageName'
+         required: true
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: version
+      run: echo "${{ github.event.inputs.version}} ${{ fromJSON('["", ""]')[github.event.inputs.task == 'true'] }} ${{ github.event.inputs.version }}
